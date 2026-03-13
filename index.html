@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="color-scheme" content="dark" />
+  <title>Викторина</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="card screen is-active" id="screen-start">
+      <div class="eyebrow">Викторина</div>
+      <h1>Введите имя</h1>
+      <p class="muted">Имя сразу отправляется в таблицу, затем открываются 10 случайных вопросов без повторов.</p>
+
+      <form id="name-form" class="stack-lg" novalidate>
+        <label class="field-label" for="player-name">Имя участника</label>
+        <input
+          id="player-name"
+          name="playerName"
+          type="text"
+          maxlength="100"
+          autocomplete="name"
+          autocapitalize="words"
+          enterkeyhint="go"
+          placeholder="Например, Алина"
+          required
+        />
+        <button id="start-button" type="submit" class="primary-button">Начать викторину</button>
+      </form>
+
+      <p class="status-message" id="start-status" aria-live="polite"></p>
+    </section>
+
+    <section class="card screen" id="screen-quiz" aria-live="polite">
+      <div class="quiz-topbar">
+        <div class="quiz-meta-block">
+          <div class="eyebrow" id="question-counter">Вопрос 1 из 10</div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+        </div>
+        <div class="score-chip">Баллы: <span id="live-score">0</span></div>
+      </div>
+
+      <h2 class="question-text" id="question-text">Загрузка вопроса...</h2>
+      <div class="answers" id="answers"></div>
+
+      <div class="quiz-actions">
+        <button id="next-button" type="button" class="secondary-button" disabled>Следующий вопрос</button>
+      </div>
+    </section>
+
+    <section class="card screen" id="screen-result">
+      <div class="eyebrow">Готово</div>
+      <h2>Ваш результат</h2>
+      <p class="result-score"><span id="final-score">0</span> / 10</p>
+      <p class="muted" id="result-text"></p>
+      <p class="status-message" id="save-status" aria-live="polite"></p>
+      <button id="restart-button" type="button" class="primary-button">Пройти ещё раз</button>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
